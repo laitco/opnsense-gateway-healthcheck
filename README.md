@@ -214,8 +214,8 @@ You can integrate this healthcheck application with the [Gatus](https://github.c
 
 ```yaml
 endpoints:
-  - name: tailscale-examplehostname.example.com
-    group: tailscale
+  - name: example-gateway
+    group: opnsense
     url: "http://IP-ADDRESS_OR_HOSTNAME:5000/health/examplegatewayname"
     interval: 5m
     conditions:
