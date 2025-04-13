@@ -26,6 +26,9 @@
   - [`/health/unhealthy`](#healthunhealthy)
 - [⚙️ Configuration](#️-configuration)
 - [🔑 How to Create an API Key on OPNsense](#-how-to-create-an-api-key-on-opnsense)
+- [⚠️ Important Notes](#️-important-notes)
+  - [Gateway Monitoring](#gateway-monitoring)
+  - [Offline State](#offline-state)
 - [🐳 Running with Docker](#-running-with-docker)
   - [Build and Run Locally](#build-and-run-locally)
   - [Run from Docker Hub](#run-from-docker-hub)
@@ -144,6 +147,16 @@ secret = your-secret-key
 ```
 
 For more details, refer to the [OPNsense API Documentation](https://docs.opnsense.org/development/how-tos/api.html).
+
+## ⚠️ Important Notes
+
+### Gateway Monitoring
+
+To monitor gateways, **gateway monitoring must be enabled** on the gateways you wish to monitor. This is a critical requirement for the healthcheck application to function correctly.
+
+### Offline State
+
+The offline state of a gateway is determined based on the configured thresholds for **packet loss** and **latency** in the advanced settings of OPNsense. Ensure these thresholds are properly configured to reflect your monitoring needs.
 
 ## 🐳 Running with Docker
 
