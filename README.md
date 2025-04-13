@@ -58,7 +58,8 @@ Returns the health status of all gateways.
       "address": "12.34.56.789",
       "name": "WAN",
       "status_translated": "Online",
-      "healthy": true
+      "healthy": true,
+      ...
     }
   ]
 }
@@ -78,7 +79,8 @@ GET /health/WAN
   "address": "12.34.56.789",
   "name": "WAN",
   "status_translated": "Online",
-  "healthy": true
+  "healthy": true,
+  ...
 }
 ```
 
@@ -96,7 +98,8 @@ GET /health/12.34.56.789
   "address": "12.34.56.789",
   "name": "WAN",
   "status_translated": "Online",
-  "healthy": true
+  "healthy": true,
+  ...
 }
 ```
 
