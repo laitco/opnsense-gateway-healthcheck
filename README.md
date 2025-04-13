@@ -21,15 +21,17 @@
   - [`/health/healthy`](#healthhealthy)
   - [`/health/unhealthy`](#healthunhealthy)
 - [⚙️ Configuration](#️-configuration)
+- [🔑 How to Create an API Key on OPNsense](#-how-to-create-an-api-key-on-opnsense)
 - [🐳 Running with Docker](#-running-with-docker)
   - [Build and Run Locally](#build-and-run-locally)
   - [Run from Docker Hub](#run-from-docker-hub)
+- [📡 Integration with Gatus Monitoring System](#-integration-with-gatus-monitoring-system)
 - [📜 License](#-license)
 - [🤝 Contributing](#-contributing)
 
 ## ✨ Description
 
-A Python-based Flask application to monitor the health of gateways in an OPNsense network. The application provides endpoints to check the health status of all gateways, specific gateways by name or address, and lists of healthy or unhealthy gateways.
+A Python-based Flask application to monitor the health of gateways in an OPNsense network. The application provides endpoints to check the health status of all gateways, specific gateways by name or address, and lists of healthy or unhealthy gateways. These gateways can include both internet service provider (ISP) and VPN-based gateways.
 
 ## 🌟 Features
 
@@ -37,6 +39,11 @@ A Python-based Flask application to monitor the health of gateways in an OPNsens
 - **Gateway Lookup**: Query the health of a specific gateway by name or address (case-insensitive).
 - **Healthy Gateways**: List all healthy gateways.
 - **Unhealthy Gateways**: List all unhealthy gateways.
+
+## 📝 Release Notes
+
+### Version 1.0
+- Initial release with basic health check functionality for OPNsense gateways.
 
 ## 📡 Endpoints
 
@@ -76,7 +83,7 @@ GET /health/WAN
 ```
 
 ### `/health/<address>`
-Returns the health status of a specific gateway by address. This endpoint is particularly useful for gateways with static public IPs.
+Returns the health status of a specific gateway by address. This endpoint is particularly useful for gateways with static (public) IPs.
 
 **Example**:
 ```
@@ -110,6 +117,26 @@ The application is configured using environment variables:
 | `OPNSENSE_PORT`    | `443`                      | The port used to connect to the OPNsense instance. |
 | `OPNSENSE_BASE_URL` | `https://opnsense.example.com` | The base URL of the OPNsense instance.          |
 | `PORT`           | `5000`                     | The port the application runs on.               |
+
+## 🔑 How to Create an API Key on OPNsense
+
+API keys are managed in the user manager (`system_usermanager.php`). Follow these steps to create an API key:
+
+1. Navigate to the **User Manager** page in OPNsense.
+2. Select a user for whom you want to create the API key.
+3. Scroll down to the **API** section for this user.
+4. Click on the `+` sign to add a new key.
+5. Once the key is created, you will receive a single download containing the credentials in a text file (INI formatted).
+
+The contents of this file will look like this:
+
+```
+[API]
+key = your-api-key
+secret = your-secret-key
+```
+
+For more details, refer to the [OPNsense API Documentation](https://docs.opnsense.org/development/how-tos/api.html).
 
 ## 🐳 Running with Docker
 
@@ -158,6 +185,47 @@ The application is configured using environment variables:
    ```
    http://IP-ADDRESS_OR_HOSTNAME:5000/health
    ```
+
+## 📡 Integration with Gatus Monitoring System
+
+You can integrate this healthcheck application with the [Gatus](https://github.com/TwiN/gatus) monitoring system to monitor the health of specific devices.
+
+### Example Configuration
+
+```yaml
+endpoints:
+  - name: tailscale-examplehostname.example.com
+    group: tailscale
+    url: "http://IP-ADDRESS_OR_HOSTNAME:5000/health/examplegatewayname"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].healthy == pat(*true*)"
+    alerts:
+      - type: email
+        failure-threshold: 2
+        success-threshold: 3
+        description: "healthcheck failed"
+        send-on-resolved: true
+```
+
+### Explanation
+
+- **`name`**: A descriptive name for the endpoint being monitored.
+- **`group`**: A logical grouping for endpoints (e.g., `tailscale`).
+- **`url`**: The URL of the healthcheck endpoint for a specific device.
+- **`interval`**: The frequency of the healthcheck (e.g., every 5 minutes).
+- **`conditions`**:
+  - `[STATUS] == 200`: Ensures the HTTP status code is `200`.
+  - `[BODY].healthy == pat(*true*)`: Checks if the `healthy` field in the response body is `true`.
+- **`alerts`**:
+  - **`type`**: The type of alert (e.g., `email`).
+  - **`failure-threshold`**: The number of consecutive failures before triggering an alert.
+  - **`success-threshold`**: The number of consecutive successes before resolving an alert.
+  - **`description`**: A description of the alert.
+  - **`send-on-resolved`**: Whether to send a notification when the issue is resolved.
+
+For more details on configuring Gatus, refer to the [Gatus documentation](https://github.com/TwiN/gatus).
 
 ## 📜 License
 
