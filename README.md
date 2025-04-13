@@ -212,8 +212,8 @@ endpoints:
 ### Explanation
 
 - **`name`**: A descriptive name for the endpoint being monitored.
-- **`group`**: A logical grouping for endpoints (e.g., `tailscale`).
-- **`url`**: The URL of the healthcheck endpoint for a specific device.
+- **`group`**: A logical grouping for endpoints (e.g., `gateways`).
+- **`url`**: The URL of the healthcheck endpoint for a specific gateway.
 - **`interval`**: The frequency of the healthcheck (e.g., every 5 minutes).
 - **`conditions`**:
   - `[STATUS] == 200`: Ensures the HTTP status code is `200`.
