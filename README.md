@@ -3,6 +3,8 @@
 <p align="center">
   <img src="https://img.shields.io/github/stars/laitco/opnsense-gateway-healthcheck?style=social" alt="GitHub Stars">
   <img src="https://img.shields.io/github/actions/workflow/status/laitco/opnsense-gateway-healthcheck/publish-image.yaml?branch=main" alt="GitHub Workflow Status">
+  <img src="https://img.shields.io/docker/pulls/laitco/opnsense-gateway-healthcheck" alt="Docker Pulls">
+  <img src="https://img.shields.io/github/license/laitco/opnsense-gateway-healthcheck" alt="License">
   <img src="https://img.shields.io/badge/python-3.9-blue" alt="Python Version">
   <img src="https://img.shields.io/badge/code%20style-flake8-blue" alt="Code Style">
   <img src="https://img.shields.io/github/last-commit/laitco/opnsense-gateway-healthcheck" alt="Last Commit">
