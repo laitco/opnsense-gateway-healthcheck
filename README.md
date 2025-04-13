@@ -11,6 +11,10 @@
   <img src="https://img.shields.io/github/issues/laitco/opnsense-gateway-healthcheck" alt="Open Issues">
 </p>
 
+<p align="center">
+  <img src=".github/images/opnsense_gateway_healthcheck_logo.png" alt="OPNsense Gateway Healthcheck Logo" width="630">
+</p>
+
 ## 📖 Table of Contents
 - [✨ Description](#-description)
 - [🌟 Features](#-features)
