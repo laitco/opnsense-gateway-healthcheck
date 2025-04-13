@@ -59,7 +59,7 @@ Returns the health status of all gateways.
       "name": "WAN",
       "status_translated": "Online",
       "healthy": true,
-      ...
+      "..."
     }
   ]
 }
@@ -80,7 +80,7 @@ GET /health/WAN
   "name": "WAN",
   "status_translated": "Online",
   "healthy": true,
-  ...
+  "..."
 }
 ```
 
@@ -99,7 +99,7 @@ GET /health/12.34.56.789
   "name": "WAN",
   "status_translated": "Online",
   "healthy": true,
-  ...
+  "..."
 }
 ```
 
