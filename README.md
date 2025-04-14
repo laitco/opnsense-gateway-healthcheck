@@ -35,6 +35,7 @@
 - [📡 Integration with Gatus Monitoring System](#-integration-with-gatus-monitoring-system)
 - [📜 License](#-license)
 - [🤝 Contributing](#-contributing)
+- [⭐ Star History](#-star-history)
 
 ## ✨ Description
 
@@ -254,3 +255,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## 🤝 Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=laitco/opnsense-gateway-healthcheck&type=Date)](https://www.star-history.com/#laitco/opnsense-gateway-healthcheck&Date)
